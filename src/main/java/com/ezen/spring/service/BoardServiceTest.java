@@ -18,7 +18,6 @@ public class BoardServiceTest {
 		
 		// 3. 글 등록 테스트
 		BoardVO boardVO = new BoardVO();
-		boardVO.setBoardNo(100);
 		boardVO.setBoardTitle("제목");
 		boardVO.setBoardContent("글 등록 테스트");
 		boardVO.setBoardWriter("관리자");
@@ -26,7 +25,10 @@ public class BoardServiceTest {
 		boardService.insertBoard(boardVO);
 		
 		// 4. 글 목록 조회 테스트
-		List<BoardVO> boardList = boardService.getBoardList(); 
+		BoardVO searchBoard = new BoardVO();
+		//searchBoard.setSearchKeyword("가입");
+		
+		List<BoardVO> boardList = boardService.getBoardList(searchBoard); 
 		for(int i = 0; i < boardList.size(); i++) { 
 			System.out.println(boardList.get(i).toString());
 		}		

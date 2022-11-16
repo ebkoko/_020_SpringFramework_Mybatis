@@ -12,6 +12,8 @@ public class BoardVO {
 	private String boardWriter;
 	private Date boardRegdate;
 	private int boardCnt;
+	// 동적쿼리를 위한 멤버변수 선언
+	private String searchKeyword;
 	
 	public int getBoardNo() {
 		return boardNo;
@@ -20,7 +22,7 @@ public class BoardVO {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
-	
+
 	public String getBoardTitle() {
 		return boardTitle;
 	}
@@ -59,6 +61,14 @@ public class BoardVO {
 	
 	public void setBoardCnt(int boardCnt) {
 		this.boardCnt = boardCnt;
+	}
+	
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 
 	@Override

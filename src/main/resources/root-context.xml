@@ -91,10 +91,23 @@
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
 	
-	<!-- JDBC Template bean 객체로 등록 -->
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<!-- DB 연결 세션관리 객체(SessionFactory 객체) -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
+		<!-- mybatis 설정 파일 위치 지정 -->
+		<property name="configLocation" value="classpath:sql-map-config.xml"></property>
 	</bean>
+	
+	<!-- Session 하나씩 꺼내서 사용할 객체(SessionTemplate -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<!-- 어느 SessionFactory에서 꺼내서 사용할지 지정 -->
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<!-- JDBC Template bean 객체로 등록 -->
+	<!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean> -->
 	
 	<!-- Transaction 설정(DDL이 끝난 후 자동으로 commit, rollback 호출) -->
 	<!-- TransactionManaget 클래스를 bean 객체로 만들어서 Transaction을 관리 -->
